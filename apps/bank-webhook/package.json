@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@repo/db":"*",
     "@types/express": "^5.0.5",
     "express": "^5.1.0"
   }
