@@ -1,19 +1,19 @@
 import express from "express";
-import db from "@repo/db/client";
+import db   from "@repo/db/client";  //  error solved !
 
 const app = express();
 app.use(express.json());
 
 interface HDFCweb {
   token : string,
-  user_identifier : string,
+  userId : number,
   amount : number
 }
 
 app.post("/hdfcWebhook",async (req:express.Request<{}, {}, HDFCweb>,res:express.Response) => {
   const   paymentInformation = {
     token : req.body.token,
-    userId : req.body.user_identifier,
+    userId : req.body.userId,
     amount : req.body.amount
   };
   // Update balance in db, add txn
@@ -23,9 +23,9 @@ app.post("/hdfcWebhook",async (req:express.Request<{}, {}, HDFCweb>,res:express.
     //     userId:paymentInformation.userId
     //   }
     // })
-    await db.Balance.update({
+    await db.balance.update({
       where :{
-        useId:paymentInformation.userId
+        userId:paymentInformation.userId
       },
       data: {
           amount:{
@@ -38,7 +38,10 @@ app.post("/hdfcWebhook",async (req:express.Request<{}, {}, HDFCweb>,res:express.
   }
   db.onRampTransaction.update({
     where:{
-      token
+      token:paymentInformation.token
+    }, 
+    data: {
+      status : "success" // success key are in built in prisma
     }
   })
 })

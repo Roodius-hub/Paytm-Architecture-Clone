@@ -1,20 +1,8 @@
-/*
-  Warnings:
-
-  - You are about to drop the `user` table. If the table is not empty, all the data it contains will be lost.
-
-*/
 -- CreateEnum
-CREATE TYPE "authType" AS ENUM ('Google', 'Github');
+CREATE TYPE "AuthType" AS ENUM ('Google', 'Github');
 
 -- CreateEnum
-CREATE TYPE "onRampStatus" AS ENUM ('success', 'Failed', 'Processing');
-
--- DropTable
-DROP TABLE "user";
-
--- DropEnum
-DROP TYPE "Auth";
+CREATE TYPE "OnRampStatus" AS ENUM ('Success', 'Failure', 'Processing');
 
 -- CreateTable
 CREATE TABLE "User" (
@@ -32,7 +20,7 @@ CREATE TABLE "Merchant" (
     "id" SERIAL NOT NULL,
     "email" TEXT NOT NULL,
     "name" TEXT,
-    "auth_type" "authType" NOT NULL,
+    "auth_type" "AuthType" NOT NULL,
 
     CONSTRAINT "Merchant_pkey" PRIMARY KEY ("id")
 );
@@ -40,7 +28,7 @@ CREATE TABLE "Merchant" (
 -- CreateTable
 CREATE TABLE "OnRampTransaction" (
     "id" SERIAL NOT NULL,
-    "status" "onRampStatus" NOT NULL,
+    "status" "OnRampStatus" NOT NULL,
     "token" TEXT NOT NULL,
     "provider" TEXT NOT NULL,
     "amount" INTEGER NOT NULL,
