@@ -1,9 +1,5 @@
 import Image, { type ImageProps } from "next/image";
-import { Button } from "@repo/ui/button";
-import styles from "./page.module.css" 
-import { PrismaClient } from "@repo/db/client";
 import Layout from "./(dashboard)/layout";
-import { Appbar } from "@repo/ui/appbar/page";
 
 type Props = Omit<ImageProps, "src"> & {
   srcLight: string;
@@ -23,8 +19,7 @@ const ThemeImage = (props: Props) => {
 
 export default function Home() {
   return (
-    <div className="">
-          <Appbar/>
+    <div>
           <Layout />
     </div>
   );

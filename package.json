@@ -10,9 +10,9 @@
   },
   "devDependencies": {
     "prettier": "^3.6.2",
-    "prisma": "^7.0.1",
+    "ts-node": "^10.9.2",
     "turbo": "^2.6.1",
-    "typescript": "5.9.2"
+    "typescript": "^5.9.2"
   },
   "engines": {
     "node": ">=18"
@@ -23,7 +23,6 @@
     "packages/*"
   ],
   "dependencies": {
-    "@prisma/adapter-pg": "^7.0.1",
-    "@prisma/client": "^7.0.1"
+    "@prisma/adapter-pg": "^7.0.1"
   }
 }

@@ -8,7 +8,9 @@ interface AppbarProps {
 }
 
 export const Appbar = ({user, onSignin, onSignout}: AppbarProps) => {
-  return <div className="p-4">
+  return (
+  <>
+  <div className="p-4">
   <div className="border border-black-600 rounded-lg p-2 flex justify-between font-normal md:font-bold items-center ">
     
     <div className="font-weight: 700 text-2xl p-4">
@@ -19,4 +21,6 @@ export const Appbar = ({user, onSignin, onSignout}: AppbarProps) => {
     </Button>
   </div>
   </div> 
+  </>
+  )
 }

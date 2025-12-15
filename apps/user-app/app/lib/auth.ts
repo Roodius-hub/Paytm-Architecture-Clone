@@ -1,5 +1,5 @@
 import CredentialsProvider  from "next-auth/providers/credentials";
-import db  from "@repo/db/client";
+import { prisma }  from "@repo/db/client";
 import bcrypt from "bcrypt";
 
 export const authOptions = {
@@ -16,7 +16,7 @@ export const authOptions = {
       
       async authorize(credentials:any) {
           const hashpass = await bcrypt.hash(credentials.password, 10);
-          const existingUser = await db.user.findFirst({
+          const existingUser = await prisma.user.findFirst({
               where: {
                   number: credentials.number
               }
@@ -35,7 +35,7 @@ export const authOptions = {
           } 
           
           try {
-              const user = await db.user.create({
+              const user = await prisma.user.create({
                   data: {
                       number: credentials.number,
                       password: hashpass,
